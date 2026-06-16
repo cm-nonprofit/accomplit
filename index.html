@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Accomplit — Turn what you've done into who you're becoming.</title>
+<meta name="description" content="Accomplit helps students and young adults organize achievements, build standout portfolios, prepare for interviews, and navigate academic and career milestones with confidence." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" />
+<style>
+  :root {
+    --bg: #F5F7FB;
+    --surface: #FFFFFF;
+    --text: #0E1336;
+    --muted: #5B6485;
+    --primary: #5A4BFF;
+    --primary-700: #3F2FE0;
+    --secondary: #19C9D8;
+    --accent: #B45BFF;
+    --donate: #FF7A45;
+    --donate-700: #E55E27;
+    --border: rgba(14, 19, 54, 0.08);
+    --glass: rgba(255, 255, 255, 0.65);
+    --glass-stroke: rgba(255, 255, 255, 0.55);
+    --shadow-sm: 0 2px 8px rgba(14, 19, 54, 0.06);
+    --shadow-md: 0 14px 36px -10px rgba(90, 75, 255, 0.18), 0 4px 14px rgba(14, 19, 54, 0.06);
+    --shadow-lg: 0 30px 70px -20px rgba(90, 75, 255, 0.28), 0 10px 30px rgba(14, 19, 54, 0.08);
+    --radius-sm: 12px;
+    --radius-md: 20px;
+    --radius-lg: 28px;
+    --maxw: 1200px;
+    --grad-hero: radial-gradient(1100px 600px at 88% -10%, rgba(180,91,255,0.22), transparent 60%),
+                 radial-gradient(900px 500px at -10% 20%, rgba(25,201,216,0.20), transparent 55%),
+                 radial-gradient(700px 500px at 50% 110%, rgba(90,75,255,0.18), transparent 60%);
+    --grad-brand: linear-gradient(135deg, #5A4BFF 0%, #B45BFF 55%, #19C9D8 110%);
+    --grad-donate: linear-gradient(135deg, #FF7A45 0%, #FF4F8B 100%);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin: 0 0 0.5em;
+  }
+  h1 { font-size: clamp(2.3rem, 5.2vw, 4rem); font-weight: 700; }
+  h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); font-weight: 700; }
+  h3 { font-size: 1.25rem; font-weight: 600; }
+  p  { margin: 0 0 1em; color: var(--muted); }
+  a  { color: var(--primary); text-decoration: none; }
+  a:hover { color: var(--primary-700); }
+
+  .container {
+    width: min(var(--maxw), 92%);
+    margin: 0 auto;
+  }
+
+  /* ---------- NAV ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    background: rgba(245, 247, 251, 0.72);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text);
+  }
+  .brand-mark {
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    background: var(--grad-brand);
+    display: grid; place-items: center;
+    box-shadow: 0 6px 16px rgba(90,75,255,0.35);
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .nav-links a {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 0.95rem;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+    text-decoration: none;
+    font-family: inherit;
+  }
+  .btn:focus-visible {
+    outline: 3px solid rgba(90,75,255,0.45);
+    outline-offset: 3px;
+  }
+  .btn-primary {
+    background: var(--grad-brand);
+    color: #fff;
+    box-shadow: 0 10px 24px -6px rgba(90,75,255,0.45);
+  }
+  .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.05); }
+  .btn-donate {
+    background: var(--grad-donate);
+    color: #fff;
+    box-shadow: 0 10px 24px -6px rgba(255,122,69,0.55);
+  }
+  .btn-donate:hover { transform: translateY(-2px); filter: brightness(1.05); }
+  .btn-donate:focus-visible {
+    outline: 3px solid rgba(255,122,69,0.55);
+  }
+  .btn-ghost {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+  .btn-ghost:hover { transform: translateY(-2px); }
+
+  .menu-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px 10px;
+    cursor: pointer;
+  }
+  .menu-toggle svg { display: block; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    padding: 90px 0 100px;
+    overflow: hidden;
+    background: var(--grad-hero);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--primary-700);
+    background: rgba(90,75,255,0.10);
+    border: 1px solid rgba(90,75,255,0.20);
+    margin-bottom: 18px;
+    letter-spacing: 0.02em;
+  }
+  .eyebrow .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--grad-brand);
+  }
+  .hero h1 .grad {
+    background: var(--grad-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .hero-lead {
+    font-size: 1.13rem;
+    max-width: 540px;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-stats {
+    margin-top: 44px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    max-width: 540px;
+  }
+  .stat {
+    padding: 16px 18px;
+    border-radius: var(--radius-md);
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-stroke);
+    box-shadow: var(--shadow-sm);
+  }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--text);
+  }
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  .hero-art {
+    position: relative;
+    height: 100%;
+    min-height: 460px;
+    display: grid;
+    place-items: center;
+  }
+  .hero-card {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    padding: 22px;
+    border-radius: var(--radius-lg);
+    background: var(--glass);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--glass-stroke);
+    box-shadow: var(--shadow-lg);
+  }
+  .hero-card-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .hero-card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+  .pill {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(25,201,216,0.16);
+    color: #0a8a96;
+  }
+  .achievement {
+    display: grid;
+    grid-template-columns: 38px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.65);
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+  }
+  .achievement:last-child { margin-bottom: 0; }
+  .achv-icon {
+    width: 38px; height: 38px;
+    border-radius: 11px;
+    display: grid; place-items: center;
+    color: #fff;
+  }
+  .achv-icon.a1 { background: linear-gradient(135deg,#5A4BFF,#B45BFF); }
+  .achv-icon.a2 { background: linear-gradient(135deg,#19C9D8,#5A4BFF); }
+  .achv-icon.a3 { background: linear-gradient(135deg,#FF7A45,#FF4F8B); }
+  .achv-icon.a4 { background: linear-gradient(135deg,#B45BFF,#19C9D8); }
+  .achv-text strong {
+    display: block;
+    font-size: 0.92rem;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .achv-text span {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .achv-meta {
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .progress-bar {
+    margin-top: 16px;
+    background: rgba(14,19,54,0.06);
+    border-radius: 999px;
+    overflow: hidden;
+    height: 8px;
+  }
+  .progress-bar > span {
+    display: block;
+    height: 100%;
+    width: 72%;
+    background: var(--grad-brand);
+    border-radius: 999px;
+  }
+  .progress-label {
+    display: flex; justify-content: space-between;
+    font-size: 0.78rem; color: var(--muted);
+    margin-top: 8px;
+  }
+  .hero-blob {
+    position: absolute;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: -1;
+    opacity: 0.5;
+  }
+  .hero-blob.b1 { background: #5A4BFF; top: -40px; right: -40px; }
+  .hero-blob.b2 { background: #19C9D8; bottom: -60px; left: -40px; }
+
+  /* ---------- SECTION ---------- */
+  section { padding: 90px 0; position: relative; }
+  .section-head {
+    max-width: 720px;
+    margin: 0 auto 56px;
+    text-align: center;
+  }
+  .section-head .eyebrow { margin-bottom: 14px; }
+  .section-head p {
+    font-size: 1.05rem;
+    color: var(--muted);
+  }
+
+  /* ---------- PROBLEM ---------- */
+  .problem {
+    background: linear-gradient(180deg, transparent 0%, #EEF1F8 100%);
+  }
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .problem-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .problem-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+  .problem-icon {
+    width: 46px; height: 46px;
+    border-radius: 14px;
+    display: grid; place-items: center;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+  .problem-icon.p1 { background: linear-gradient(135deg,#5A4BFF,#B45BFF); }
+  .problem-icon.p2 { background: linear-gradient(135deg,#19C9D8,#5A4BFF); }
+  .problem-icon.p3 { background: linear-gradient(135deg,#FF7A45,#FF4F8B); }
+  .problem-card h3 { margin-bottom: 8px; }
+  .problem-card p { font-size: 0.95rem; margin: 0; }
+
+  /* ---------- EVOLUTION ---------- */
+  .evolution-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--primary), var(--secondary));
+    border-radius: 2px;
+  }
+  .tl-item {
+    position: relative;
+    padding-bottom: 28px;
+  }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 6px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 3px solid var(--primary);
+    box-shadow: 0 0 0 4px rgba(90,75,255,0.12);
+  }
+  .tl-tag {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--primary);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .tl-item h3 { font-size: 1.1rem; margin-bottom: 6px; }
+  .tl-item p { font-size: 0.95rem; margin: 0; }
+
+  .evolution-visual {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    aspect-ratio: 4/5;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+  .evolution-visual svg { width: 100%; height: 100%; display: block; }
+
+  /* ---------- PROGRAMS ---------- */
+  .programs {
+    background: linear-gradient(180deg, #EEF1F8 0%, transparent 100%);
+  }
+  .program-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .program-card {
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; flex-direction: column;
+  }
+  .program-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+  }
+  .program-img {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    position: relative;
+  }
+  .program-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .program-card:hover .program-img img { transform: scale(1.06); }
+  .program-body { padding: 22px 22px 24px; flex: 1; display: flex; flex-direction: column; }
+  .program-tag {
+    align-self: flex-start;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(90,75,255,0.10);
+    color: var(--primary-700);
+    margin-bottom: 12px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .program-body h3 { font-size: 1.15rem; margin-bottom: 8px; }
+  .program-body p { font-size: 0.93rem; flex: 1; margin: 0 0 14px; }
+  .program-link {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .program-link::after {
+    content: '→';
+    transition: transform 0.2s ease;
+  }
+  .program-link:hover::after { transform: translateX(4px); }
+
+  /* ---------- IMPACT ---------- */
+  .impact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .impact-image {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    aspect-ratio: 4/5;
+  }
+  .impact-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .impact-numbers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .impact-num {
+    padding: 22px;
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+  .impact-num .n {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    background: var(--grad-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .impact-num .l {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* ---------- FOUNDER ---------- */
+  .founder { background: linear-gradient(180deg, transparent 0%, #EEF1F8 100%); }
+  .founder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .founder-photo-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .founder-photo {
+    aspect-ratio: 1;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--grad-brand);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    display: grid;
+    place-items: center;
+  }
+  .founder-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .founder-photo .name-overlay {
+    position: absolute;
+    bottom: 12px; left: 12px; right: 12px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 10px;
+    padding: 6px 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text);
+    backdrop-filter: blur(8px);
+  }
+  .founder-body blockquote {
+    margin: 0 0 20px;
+    padding: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text);
+    border-left: 4px solid var(--primary);
+    padding-left: 18px;
+  }
+
+  /* ---------- CONTACT + DONATE ---------- */
+  .contact-donate-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .panel {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+  }
+  .panel h2 { font-size: 1.7rem; margin-bottom: 8px; }
+  .panel > p { font-size: 0.98rem; margin-bottom: 22px; }
+
+  .form-row { margin-bottom: 16px; }
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  input, textarea, select {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: #FAFBFE;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text);
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(90,75,255,0.18);
+  }
+  textarea { resize: vertical; min-height: 120px; }
+  .field-error {
+    display: none;
+    font-size: 0.78rem;
+    color: #D93B45;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+  .field-error.show { display: block; }
+
+  .donate-amounts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .amt-btn {
+    padding: 14px 6px;
+    border-radius: 12px;
+    border: 1.5px solid var(--border);
+    background: #FAFBFE;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.18s ease;
+    font-family: inherit;
+    font-size: 0.95rem;
+  }
+  .amt-btn:hover { border-color: var(--donate); color: var(--donate); }
+  .amt-btn.active {
+    background: var(--grad-donate);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 8px 20px -6px rgba(255,122,69,0.5);
+  }
+  .donate-impact {
+    background: rgba(255,122,69,0.08);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+    color: var(--text);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .donate-impact svg { flex: 0 0 auto; }
+
+  /* ---------- TOAST + MODAL ---------- */
+  .toast {
+    position: fixed;
+    bottom: 30px; left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--text);
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 0.92rem;
+    box-shadow: var(--shadow-lg);
+    z-index: 100;
+    transition: transform 0.4s cubic-bezier(.18,.89,.32,1.28);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(14,19,54,0.55);
+    backdrop-filter: blur(6px);
+    z-index: 110;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-backdrop.show { display: flex; }
+  .modal {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    animation: pop 0.3s cubic-bezier(.18,.89,.32,1.28);
+  }
+  @keyframes pop { from { transform: scale(0.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .modal-icon {
+    width: 64px; height: 64px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: var(--grad-donate);
+    display: grid; place-items: center;
+    color: #fff;
+  }
+  .modal h3 { font-size: 1.4rem; margin-bottom: 8px; }
+  .modal p { margin-bottom: 22px; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 50px 0 30px;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 30px;
+  }
+  .footer-brand p { font-size: 0.92rem; max-width: 320px; margin-top: 12px; }
+  .footer-col h4 {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .footer-col a {
+    display: block;
+    color: var(--text);
+    font-size: 0.94rem;
+    margin-bottom: 8px;
+    opacity: 0.8;
+  }
+  .footer-col a:hover { opacity: 1; color: var(--primary); }
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* ---------- ANIMATIONS ---------- */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  [data-animate].in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  [data-animate][data-delay="1"] { transition-delay: 0.08s; }
+  [data-animate][data-delay="2"] { transition-delay: 0.16s; }
+  [data-animate][data-delay="3"] { transition-delay: 0.24s; }
+  [data-animate][data-delay="4"] { transition-delay: 0.32s; }
+  [data-animate][data-delay="5"] { transition-delay: 0.40s; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 960px) {
+    .hero-grid, .evolution-grid, .impact-grid, .founder-grid, .contact-donate-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .program-grid { grid-template-columns: repeat(2, 1fr); }
+    .problem-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .hero-art { min-height: 0; }
+    section { padding: 70px 0; }
+    .hero { padding: 60px 0 80px; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: rgba(245,247,251,0.97);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      gap: 18px;
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-links.open .btn { width: 100%; }
+    .menu-toggle { display: inline-flex; }
+    .program-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr; }
+    .panel { padding: 26px; }
+    .donate-amounts { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+    [data-animate] { opacity: 1; transform: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =================== NAV =================== -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#home" class="brand" aria-label="Accomplit home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 13l4 4L19 7"/>
+        </svg>
+      </span>
+      Accomplit
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#evolution">About Us</a>
+      <a href="#programs">Programs</a>
+      <a href="#contact">Contact</a>
+      <a href="#donate" class="btn btn-donate">Donate</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-controls="navLinks" aria-expanded="false" id="menuBtn">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- =================== HERO =================== -->
+<section id="home" class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow" data-animate><span class="dot"></span>Built by students, for students</span>
+      <h1 data-animate data-delay="1">
+        Turn what you've done into <span class="grad">who you're becoming.</span>
+      </h1>
+      <p class="hero-lead" data-animate data-delay="2">
+        Accomplit gives students and young adults the structure, storytelling, and confidence to translate scattered achievements into portfolios, interviews, and applications that actually open doors.
+      </p>
+      <div class="hero-ctas" data-animate data-delay="3">
+        <a href="#programs" class="btn btn-primary">Explore Programs</a>
+        <a href="#donate" class="btn btn-donate">Donate</a>
+      </div>
+      <div class="hero-stats" data-animate data-delay="4">
+        <div class="stat">
+          <div class="stat-num">1,800+</div>
+          <div class="stat-label">Achievements organized</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">240</div>
+          <div class="stat-label">Portfolios reviewed</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">38</div>
+          <div class="stat-label">Partner schools</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-art" data-animate data-delay="2">
+      <div class="hero-blob b1"></div>
+      <div class="hero-blob b2"></div>
+      <div class="hero-card" role="img" aria-label="Sample Accomplit portfolio dashboard showing organized achievements and a progress bar.">
+        <div class="hero-card-header">
+          <div class="hero-card-title">My Portfolio · Spring 2026</div>
+          <span class="pill">Reviewed</span>
+        </div>
+        <div class="achievement">
+          <div class="achv-icon a1" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/>
+            </svg>
+          </div>
+          <div class="achv-text">
+            <strong>Hospital Volunteer Lead</strong>
+            <span>Pediatrics · 220 hrs · 2 stories drafted</span>
+          </div>
+          <div class="achv-meta">Strong</div>
+        </div>
+        <div class="achievement">
+          <div class="achv-icon a2" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+          </div>
+          <div class="achv-text">
+            <strong>Independent Finance Study</strong>
+            <span>Equity research note · peer feedback x4</span>
+          </div>
+          <div class="achv-meta">Refine</div>
+        </div>
+        <div class="achievement">
+          <div class="achv-icon a3" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="achv-text">
+            <strong>Mock Interview Session</strong>
+            <span>Behavioral · score 8.4 / 10</span>
+          </div>
+          <div class="achv-meta">+1.6</div>
+        </div>
+        <div class="achievement">
+          <div class="achv-icon a4" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+          </div>
+          <div class="achv-text">
+            <strong>Personal Statement Draft</strong>
+            <span>Story arc: clarified · tone: anchored</span>
+          </div>
+          <div class="achv-meta">Ready</div>
+        </div>
+        <div class="progress-bar"><span></span></div>
+        <div class="progress-label"><span>Portfolio readiness</span><span>72%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== PROBLEM =================== -->
+<section id="problem" class="problem">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-animate><span class="dot"></span>The Problem</span>
+      <h2 data-animate data-delay="1">Students do incredible things. Then they freeze trying to talk about them.</h2>
+      <p data-animate data-delay="2">
+        We've watched friends pour years into clinics, internships, research, and side projects — only to flatten it all into one boring bullet on a resume. The gap isn't effort. It's the missing tools to organize, frame, and present what you've already earned.
+      </p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card" data-animate>
+        <div class="problem-icon p1" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </div>
+        <h3>Scattered across everywhere</h3>
+        <p>Achievements live in old emails, screenshots, Google Docs, and memory. By application season, half of them are forgotten. We give every student one organized home for their full story.</p>
+      </div>
+      <div class="problem-card" data-animate data-delay="1">
+        <div class="problem-icon p2" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <h3>No one taught them to tell the story</h3>
+        <p>"Tell me about yourself" sinks brilliant candidates. Storytelling, framing, and design feedback are typically reserved for those who can afford private coaches. We make that coaching free and student-led.</p>
+      </div>
+      <div class="problem-card" data-animate data-delay="2">
+        <div class="problem-icon p3" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 3"/>
+          </svg>
+        </div>
+        <h3>The clock starts before they know it</h3>
+        <p>Medical, finance, and other industry pathways quietly begin in 9th and 10th grade. By the time students learn the unwritten rules, they've already missed inflection points. We map those milestones early.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== EVOLUTION =================== -->
+<section id="evolution">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-animate><span class="dot"></span>Our Story</span>
+      <h2 data-animate data-delay="1">From a class project to a nationwide student initiative.</h2>
+      <p data-animate data-delay="2">
+        Accomplit started as an app idea between two students — one heading toward medicine, the other toward finance — who kept asking the same question: <em>"Why isn't there one place to actually keep track of all this?"</em> So we built one. Then we turned it into a nonprofit.
+      </p>
+    </div>
+    <div class="evolution-grid">
+      <div class="timeline" data-animate>
+        <div class="tl-item">
+          <div class="tl-tag">2024 · Spark</div>
+          <h3>The notebook problem</h3>
+          <p>Audrey and Maggie keep losing track of activities across volunteer logs, internship notes, and shadowing journals. They sketch what a single home for it all would look like.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-tag">2025 · Prototype</div>
+          <h3>The Accomplit app v0.1</h3>
+          <p>The first build organizes achievements into "story-ready" cards with prompts: What did you do? What did it cost you? What did it teach you? Friends start using it before midterms.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-tag">2025 · Workshops</div>
+          <h3>Walk-in sessions on weekends</h3>
+          <p>Demand for portfolio and interview feedback outgrows the original app. Saturday sessions begin at a local library — free, peer-led, snack-supported.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-tag">2026 · Nonprofit</div>
+          <h3>Accomplit becomes Accomplit</h3>
+          <p>Same name, bigger mission. The app stays free. Programs expand to interview prep, industry insights, and milestone planning — all rooted in the same idea: help students present what they've already accomplished.</p>
+        </div>
+      </div>
+
+      <div class="evolution-visual" data-animate data-delay="2" aria-hidden="true">
+        <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="evoGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#5A4BFF"/>
+              <stop offset="55%" stop-color="#B45BFF"/>
+              <stop offset="100%" stop-color="#19C9D8"/>
+            </linearGradient>
+            <linearGradient id="evoSoft" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#F5F7FB"/>
+              <stop offset="100%" stop-color="#EEF1F8"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="500" fill="url(#evoSoft)"/>
+          <!-- Background dots -->
+          <g fill="#5A4BFF" opacity="0.08">
+            <circle cx="40" cy="60" r="2"/><circle cx="80" cy="100" r="2"/>
+            <circle cx="120" cy="60" r="2"/><circle cx="320" cy="120" r="2"/>
+            <circle cx="360" cy="80" r="2"/><circle cx="350" cy="420" r="2"/>
+            <circle cx="60" cy="440" r="2"/>
+          </g>
+          <!-- Notebook (before) -->
+          <g transform="translate(40,80)">
+            <rect width="120" height="150" rx="8" fill="#FFFFFF" stroke="#D9DEED" stroke-width="2"/>
+            <line x1="20" y1="32" x2="100" y2="32" stroke="#C2C8DD" stroke-width="2"/>
+            <line x1="20" y1="50" x2="80" y2="50" stroke="#C2C8DD" stroke-width="2"/>
+            <line x1="20" y1="68" x2="100" y2="68" stroke="#C2C8DD" stroke-width="2"/>
+            <line x1="20" y1="86" x2="60" y2="86" stroke="#C2C8DD" stroke-width="2"/>
+            <line x1="20" y1="104" x2="100" y2="104" stroke="#C2C8DD" stroke-width="2"/>
+            <line x1="20" y1="122" x2="70" y2="122" stroke="#C2C8DD" stroke-width="2"/>
+          </g>
+          <!-- Arrow -->
+          <g transform="translate(170,140)">
+            <path d="M0 20 L50 20 M40 10 L50 20 L40 30" stroke="url(#evoGrad)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <!-- App card (after) -->
+          <g transform="translate(230,80)">
+            <rect width="130" height="150" rx="14" fill="url(#evoGrad)"/>
+            <rect x="12" y="14" width="106" height="22" rx="6" fill="rgba(255,255,255,0.92)"/>
+            <rect x="20" y="22" width="60" height="6" rx="3" fill="#5A4BFF"/>
+            <rect x="12" y="44" width="106" height="18" rx="6" fill="rgba(255,255,255,0.85)"/>
+            <rect x="12" y="68" width="106" height="18" rx="6" fill="rgba(255,255,255,0.85)"/>
+            <rect x="12" y="92" width="106" height="18" rx="6" fill="rgba(255,255,255,0.85)"/>
+            <rect x="12" y="120" width="60" height="18" rx="9" fill="#FF7A45"/>
+            <text x="42" y="133" font-size="10" font-family="Inter, sans-serif" font-weight="700" fill="white">Story</text>
+          </g>
+          <!-- Path -->
+          <path d="M50 300 Q 200 240 350 320" stroke="url(#evoGrad)" stroke-width="3" fill="none" stroke-dasharray="6 8" opacity="0.6"/>
+          <!-- Milestone dots -->
+          <g>
+            <circle cx="80" cy="290" r="14" fill="#FFFFFF" stroke="#5A4BFF" stroke-width="3"/>
+            <text x="80" y="295" text-anchor="middle" font-size="11" font-family="Space Grotesk, sans-serif" font-weight="700" fill="#5A4BFF">9</text>
+            <circle cx="170" cy="262" r="14" fill="#FFFFFF" stroke="#B45BFF" stroke-width="3"/>
+            <text x="170" y="267" text-anchor="middle" font-size="11" font-family="Space Grotesk, sans-serif" font-weight="700" fill="#B45BFF">10</text>
+            <circle cx="260" cy="280" r="14" fill="#FFFFFF" stroke="#19C9D8" stroke-width="3"/>
+            <text x="260" y="285" text-anchor="middle" font-size="11" font-family="Space Grotesk, sans-serif" font-weight="700" fill="#0a8a96">11</text>
+            <circle cx="340" cy="316" r="16" fill="#FF7A45"/>
+            <text x="340" y="321" text-anchor="middle" font-size="11" font-family="Space Grotesk, sans-serif" font-weight="700" fill="#FFFFFF">12</text>
+          </g>
+          <!-- Bottom labels -->
+          <g font-family="Inter, sans-serif" font-size="11" fill="#5B6485" font-weight="500" text-anchor="middle">
+            <text x="200" y="385">From scattered notes to structured story.</text>
+            <text x="200" y="405" font-weight="600" fill="#0E1336">From idea to initiative.</text>
+          </g>
+          <!-- Confetti -->
+          <g>
+            <rect x="70" y="380" width="6" height="3" rx="1" fill="#5A4BFF" transform="rotate(20 73 381)"/>
+            <rect x="320" y="395" width="6" height="3" rx="1" fill="#19C9D8" transform="rotate(-15 323 396)"/>
+            <rect x="100" y="430" width="6" height="3" rx="1" fill="#FF7A45" transform="rotate(40 103 431)"/>
+            <rect x="290" y="440" width="6" height="3" rx="1" fill="#B45BFF" transform="rotate(-30 293 441)"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== PROGRAMS =================== -->
+<section id="programs" class="programs">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-animate><span class="dot"></span>What We Do</span>
+      <h2 data-animate data-delay="1">Six programs. One purpose: present your story without flattening it.</h2>
+      <p data-animate data-delay="2">
+        Everything we run is free, student-led, and built around the Accomplit method: organize, reflect, frame, refine. Pick the program that matches where you are.
+      </p>
+    </div>
+
+    <div class="program-grid">
+      <article class="program-card" data-animate>
+        <div class="program-img"><img src="assets/program1.jpg" alt="Student working on a laptop, organizing a digital portfolio." loading="lazy"/></div>
+        <div class="program-body">
+          <span class="program-tag">Portfolio</span>
+          <h3>The Portfolio Studio</h3>
+          <p>Three-week sprints where students build a structured digital portfolio with our templates and live design feedback. Designed for college, scholarship, and internship applications.</p>
+          <a href="#contact" class="program-link">Request a sprint</a>
+        </div>
+      </article>
+
+      <article class="program-card" data-animate data-delay="1">
+        <div class="program-img"><img src="assets/program2.jpg" alt="Young professional in a job interview setting with a handshake." loading="lazy"/></div>
+        <div class="program-body">
+          <span class="program-tag">Interview</span>
+          <h3>Interview Forge</h3>
+          <p>Structured mock interviews — behavioral, technical, and clinical/case formats — with reflection scorecards so students walk away knowing what to fix, not just that they were nervous.</p>
+          <a href="#contact" class="program-link">Book a session</a>
+        </div>
+      </article>
+
+      <article class="program-card" data-animate data-delay="2">
+        <div class="program-img"><img src="assets/program3.jpg" alt="Group of college students collaborating around notebooks." loading="lazy"/></div>
+        <div class="program-body">
+          <span class="program-tag">Storytelling</span>
+          <h3>Storyline Lab</h3>
+          <p>1:1 storytelling reviews that turn raw activities into honest, resonant narratives. We don't punch up your story — we help you find the one that's already there.</p>
+          <a href="#contact" class="program-link">Get a review</a>
+        </div>
+      </article>
+
+      <article class="program-card" data-animate>
+        <div class="program-img"><img src="assets/program4.jpg" alt="Mentor and mentee in a coffee shop conversation." loading="lazy"/></div>
+        <div class="program-body">
+          <span class="program-tag">Industry</span>
+          <h3>Industry Inside Track</h3>
+          <p>Monthly conversations with working professionals across medicine, finance, research, and tech. Real career arcs, real questions, no LinkedIn-speak — just what people wish they'd known earlier.</p>
+          <a href="#contact" class="program-link">Join a session</a>
+        </div>
+      </article>
+
+      <article class="program-card" data-animate data-delay="1">
+        <div class="program-img"><img src="assets/program5.jpg" alt="A planner with goals laid out on a minimal desk." loading="lazy"/></div>
+        <div class="program-body">
+          <span class="program-tag">Planning</span>
+          <h3>Milestone Mapper</h3>
+          <p>Personalized timelines that show students what to do, and when — from 9th-grade activity choices to senior-year application strategy. Especially calibrated for pre-med and pre-finance pathways.</p>
+          <a href="#contact" class="program-link">Map your year</a>
+        </div>
+      </article>
+
+      <article class="program-card" data-animate data-delay="2">
+        <div class="program-img"><img src="assets/program6.jpg" alt="Confident young woman smiling outdoors in natural light." loading="lazy"/></div>
+        <div class="program-body">
+          <span class="program-tag">Community</span>
+          <h3>Confidence Circles</h3>
+          <p>Small peer cohorts of 6 students who meet biweekly to share progress, critique kindly, and remind each other that "I have done enough" is a sentence worth saying out loud.</p>
+          <a href="#contact" class="program-link">Join a circle</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =================== IMPACT =================== -->
+<section id="impact">
+  <div class="container">
+    <div class="impact-grid">
+      <div class="impact-image" data-animate>
+        <img src="assets/impact.jpg" alt="A teenager writing in a journal in warm sunlight." loading="lazy"/>
+      </div>
+      <div data-animate data-delay="1">
+        <span class="eyebrow"><span class="dot"></span>Our Impact</span>
+        <h2>The goal isn't more achievements. It's clearer ones.</h2>
+        <p>
+          We measure success differently. Not by the number of awards a student adds, but by how confidently they can talk about the work they already did. By how many of them stop apologizing for not having "enough." By how many walk into the next room without shrinking first.
+        </p>
+        <div class="impact-numbers">
+          <div class="impact-num">
+            <div class="n">87%</div>
+            <div class="l">of students report feeling more prepared for interviews after one Forge session</div>
+          </div>
+          <div class="impact-num">
+            <div class="n">3.4×</div>
+            <div class="l">more achievements recalled when organized in Accomplit vs. memory alone</div>
+          </div>
+          <div class="impact-num">
+            <div class="n">240</div>
+            <div class="l">portfolios reviewed line-by-line in the past school year</div>
+          </div>
+          <div class="impact-num">
+            <div class="n">$0</div>
+            <div class="l">that any student has paid to use the app or join a program — ever</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== FOUNDER =================== -->
+<section id="founder" class="founder">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" data-animate><span class="dot"></span>Meet the Founders</span>
+      <h2 data-animate data-delay="1">Two students who got tired of watching their friends sell themselves short.</h2>
+    </div>
+    <div class="founder-grid">
+      <div class="founder-photo-wrap" data-animate>
+        <div class="founder-photo" id="founderPhoto1">
+          <!-- Inline SVG avatar (default) — replaced at runtime if assets/founder.png exists -->
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" id="founderSvg1">
+            <defs>
+              <linearGradient id="fbg1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#5A4BFF"/>
+                <stop offset="100%" stop-color="#B45BFF"/>
+              </linearGradient>
+            </defs>
+            <rect width="200" height="200" fill="url(#fbg1)"/>
+            <circle cx="100" cy="84" r="34" fill="#FFFFFF" opacity="0.95"/>
+            <path d="M40 200 C 40 150, 160 150, 160 200 Z" fill="#FFFFFF" opacity="0.95"/>
+            <circle cx="92" cy="80" r="3" fill="#0E1336"/>
+            <circle cx="108" cy="80" r="3" fill="#0E1336"/>
+            <path d="M90 95 Q 100 102, 110 95" stroke="#0E1336" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="name-overlay">Audrey Li · Co-founder</div>
+        </div>
+        <div class="founder-photo" id="founderPhoto2">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" id="founderSvg2">
+            <defs>
+              <linearGradient id="fbg2" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#19C9D8"/>
+                <stop offset="100%" stop-color="#5A4BFF"/>
+              </linearGradient>
+            </defs>
+            <rect width="200" height="200" fill="url(#fbg2)"/>
+            <circle cx="100" cy="84" r="34" fill="#FFFFFF" opacity="0.95"/>
+            <path d="M40 200 C 40 150, 160 150, 160 200 Z" fill="#FFFFFF" opacity="0.95"/>
+            <circle cx="92" cy="80" r="3" fill="#0E1336"/>
+            <circle cx="108" cy="80" r="3" fill="#0E1336"/>
+            <path d="M90 95 Q 100 102, 110 95" stroke="#0E1336" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="name-overlay">Maggie Xian · Co-founder</div>
+        </div>
+      </div>
+      <div class="founder-body" data-animate data-delay="1">
+        <blockquote>
+          "We kept watching brilliant people freeze the second they had to talk about themselves. Accomplit is what we wish we'd had at 15."
+        </blockquote>
+        <p>
+          <strong>Audrey Li</strong> is heading toward medicine, drawn by years of clinical volunteering and a fascination with how people make health decisions under pressure. She runs Accomplit's Storyline Lab and built the early sprint templates used in the Portfolio Studio.
+        </p>
+        <p>
+          <strong>Maggie Xian</strong> is heading toward finance, after teaching herself equity analysis on weekends and realizing how much of the path is gatekept by people who already knew the rules. She leads the Industry Inside Track and Milestone Mapper programs, and she's the reason the Accomplit app actually ships on time.
+        </p>
+        <p>
+          Together they lead a team of student volunteers across the country who believe the same thing: a student's accomplishments shouldn't be the limit. The limit is whether anyone ever taught them how to talk about them.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== CONTACT + DONATE =================== -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-donate-grid">
+      <div class="panel" data-animate>
+        <h2>Get in touch</h2>
+        <p>Want a free portfolio review, need to schedule a workshop at your school, or just have a question about a program? Send us a note and a real student will reply.</p>
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <label for="cname">Your name</label>
+            <input id="cname" name="cname" type="text" autocomplete="name" required />
+            <div class="field-error" data-for="cname">Please tell us your name.</div>
+          </div>
+          <div class="form-row">
+            <label for="cemail">Email</label>
+            <input id="cemail" name="cemail" type="email" autocomplete="email" required />
+            <div class="field-error" data-for="cemail">We need a valid email to write back.</div>
+          </div>
+          <div class="form-row">
+            <label for="ctopic">What's this about?</label>
+            <select id="ctopic" name="ctopic" required>
+              <option value="">Choose one…</option>
+              <option>Free portfolio review</option>
+              <option>Mock interview signup</option>
+              <option>Bring Accomplit to my school</option>
+              <option>Volunteer / join the team</option>
+              <option>Press or partnership</option>
+              <option>Something else</option>
+            </select>
+            <div class="field-error" data-for="ctopic">Pick a topic so we can route it.</div>
+          </div>
+          <div class="form-row">
+            <label for="cmsg">Your message</label>
+            <textarea id="cmsg" name="cmsg" required placeholder="Tell us a little about where you're at and how we can help."></textarea>
+            <div class="field-error" data-for="cmsg">A short message helps us help you.</div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Send message</button>
+        </form>
+      </div>
+
+      <div class="panel" id="donate" data-animate data-delay="1">
+        <h2>Power a portfolio</h2>
+        <p>Every Accomplit program is free for students. Your donation pays for workshop snacks, interview-day pizza, printed templates, and the dignity of saying "yes" to every student who asks for help.</p>
+        <div class="donate-impact">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF7A45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+          <span><strong id="impactLine">$25</strong> covers one full Storyline Lab review for a student.</span>
+        </div>
+        <div class="donate-amounts" role="group" aria-label="Donation amount">
+          <button type="button" class="amt-btn" data-amt="10">$10</button>
+          <button type="button" class="amt-btn active" data-amt="25">$25</button>
+          <button type="button" class="amt-btn" data-amt="50">$50</button>
+          <button type="button" class="amt-btn" data-amt="100">$100</button>
+        </div>
+        <div class="form-row">
+          <label for="customAmt">Custom amount (USD)</label>
+          <input id="customAmt" type="number" min="1" placeholder="Enter any amount…" />
+        </div>
+        <button type="button" class="btn btn-donate" id="donateBtn" style="width:100%;">Continue to donate</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== FOOTER =================== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 13l4 4L19 7"/>
+            </svg>
+          </span>
+          Accomplit
+        </a>
+        <p>A student-led nonprofit helping young people organize, frame, and confidently present what they've already accomplished.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#home">Home</a>
+        <a href="#evolution">About Us</a>
+        <a href="#programs">Programs</a>
+        <a href="#impact">Impact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Get involved</h4>
+        <a href="#contact">Contact</a>
+        <a href="#donate">Donate</a>
+        <a href="mailto:liaudrey72@gmail.com">liaudrey72@gmail.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © <span id="year"></span> Accomplit. Built by students. For students.
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#19C9D8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M5 13l4 4L19 7"/>
+  </svg>
+  <span id="toastMsg">Message sent. A real student will reply soon.</span>
+</div>
+
+<!-- Modal -->
+<div class="modal-backdrop" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-icon" aria-hidden="true">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+    </div>
+    <h3 id="modalTitle">Thank you!</h3>
+    <p id="modalBody">Your <strong>$25</strong> contribution helps a real student walk into the next room a little less afraid. We'll send a confirmation to your email shortly.</p>
+    <button type="button" class="btn btn-donate" id="modalClose">Close</button>
+  </div>
+</div>
+
+<script>
+  // ----- Smooth-scroll polyfill (lightweight, used when CSS scroll-behavior is unavailable)
+  (function smoothScrollPolyfill(){
+    var supportsNative = 'scrollBehavior' in document.documentElement.style;
+    function easeInOutQuad(t){ return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+    function scrollTo(target, duration){
+      duration = duration || 600;
+      var startY = window.pageYOffset;
+      var rect = target.getBoundingClientRect();
+      var endY = startY + rect.top - 64;
+      var startTime = null;
+      function step(ts){
+        if (!startTime) startTime = ts;
+        var progress = Math.min((ts - startTime) / duration, 1);
+        window.scrollTo(0, startY + (endY - startY) * easeInOutQuad(progress));
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var id = a.getAttribute('href');
+        if (!id || id === '#') return;
+        var el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        if (supportsNative) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          scrollTo(el, 600);
+        }
+        // Close mobile nav if open
+        var navLinks = document.getElementById('navLinks');
+        if (navLinks && navLinks.classList.contains('open')) navLinks.classList.remove('open');
+      });
+    });
+  })();
+
+  // ----- Mobile menu
+  (function(){
+    var btn = document.getElementById('menuBtn');
+    var nav = document.getElementById('navLinks');
+    if (!btn || !nav) return;
+    btn.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  })();
+
+  // ----- IntersectionObserver scroll animations (with fallback)
+  (function scrollAnimate(){
+    var nodes = document.querySelectorAll('[data-animate]');
+    if (!('IntersectionObserver' in window)) {
+      nodes.forEach(function(n){ n.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) {
+          en.target.classList.add('in');
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    nodes.forEach(function(n){ io.observe(n); });
+  })();
+
+  // ----- Founder image runtime check (assets/founder.png)
+  (function founderCheck(){
+    var img = new Image();
+    img.onload = function(){
+      var slot1 = document.getElementById('founderPhoto1');
+      var svg1 = document.getElementById('founderSvg1');
+      if (slot1 && svg1) {
+        svg1.remove();
+        var el = document.createElement('img');
+        el.src = 'assets/founder.png';
+        el.alt = 'Photo of Accomplit co-founder Audrey Li';
+        slot1.insertBefore(el, slot1.firstChild);
+      }
+    };
+    img.onerror = function(){ /* keep inline SVG avatar */ };
+    img.src = 'assets/founder.png';
+  })();
+
+  // ----- Contact form
+  (function contactForm(){
+    var form = document.getElementById('contactForm');
+    if (!form) return;
+    var toast = document.getElementById('toast');
+    var toastMsg = document.getElementById('toastMsg');
+
+    function showError(name, show){
+      var err = form.querySelector('.field-error[data-for="' + name + '"]');
+      if (err) err.classList.toggle('show', show);
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var ok = true;
+      var name = form.cname.value.trim();
+      var email = form.cemail.value.trim();
+      var topic = form.ctopic.value;
+      var msg = form.cmsg.value.trim();
+
+      if (!name) { showError('cname', true); ok = false; } else showError('cname', false);
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('cemail', true); ok = false; } else showError('cemail', false);
+      if (!topic) { showError('ctopic', true); ok = false; } else showError('ctopic', false);
+      if (!msg) { showError('cmsg', true); ok = false; } else showError('cmsg', false);
+
+      if (!ok) return;
+
+      toastMsg.textContent = "Got it, " + name.split(' ')[0] + ". A real student will reply soon.";
+      toast.classList.add('show');
+      form.reset();
+      setTimeout(function(){ toast.classList.remove('show'); }, 3800);
+    });
+  })();
+
+  // ----- Donate flow
+  (function donate(){
+    var buttons = document.querySelectorAll('.amt-btn');
+    var custom = document.getElementById('customAmt');
+    var donateBtn = document.getElementById('donateBtn');
+    var modal = document.getElementById('modal');
+    var modalBody = document.getElementById('modalBody');
+    var modalClose = document.getElementById('modalClose');
+    var impactLine = document.getElementById('impactLine');
+
+    var selected = 25;
+
+    function updateImpact(amt){
+      impactLine.textContent = '$' + amt;
+      var msg = '$' + amt + ' covers one full Storyline Lab review for a student.';
+      if (amt >= 100) msg = '$' + amt + ' funds an entire Confidence Circle for a semester.';
+      else if (amt >= 50) msg = '$' + amt + ' powers a Saturday Portfolio Studio sprint.';
+      else if (amt >= 25) msg = '$' + amt + ' covers one full Storyline Lab review for a student.';
+      else msg = '$' + amt + ' helps stock workshop snacks and printed templates.';
+      impactLine.parentElement.querySelector('span').innerHTML = '<strong id="impactLine">$' + amt + '</strong>' + msg.replace('$' + amt, '');
+      // re-grab impactLine since we replaced it
+      impactLine = document.getElementById('impactLine');
+    }
+
+    buttons.forEach(function(b){
+      b.addEventListener('click', function(){
+        buttons.forEach(function(x){ x.classList.remove('active'); });
+        b.classList.add('active');
+        selected = parseInt(b.getAttribute('data-amt'), 10);
+        custom.value = '';
+        updateImpact(selected);
+      });
+    });
+
+    custom.addEventListener('input', function(){
+      var v = parseInt(custom.value, 10);
+      if (!isNaN(v) && v > 0) {
+        buttons.forEach(function(x){ x.classList.remove('active'); });
+        selected = v;
+        updateImpact(selected);
+      }
+    });
+
+    donateBtn.addEventListener('click', function(){
+      if (!selected || selected < 1) return;
+      modalBody.innerHTML = 'Your <strong>$' + selected + '</strong> contribution helps a real student walk into the next room a little less afraid. We\'ll send a confirmation to your email shortly.';
+      modal.classList.add('show');
+    });
+
+    function close(){ modal.classList.remove('show'); }
+    modalClose.addEventListener('click', close);
+    modal.addEventListener('click', function(e){ if (e.target === modal) close(); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+  })();
+
+  // ----- Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
